@@ -1,16 +1,26 @@
 function getComputerChoice() {
-    let a = (Math.floor (Math.random() * 3));
+    let choice = (Math.floor (Math.random() * 3));
 
-    if (a === 0) {
+    if (choice === 0) {
         console.log ("Rock");
-    } else if (a === 1) {
+    } else if (choice === 1) {
         console.log ("Paper");
     } else {
         console.log ("Scissors");
     }
     
 }
-  (getComputerChoice())
+
+function getHumanChoice() {
+    let choice = (prompt("What is your choice?"))
+    return choice
+}
+
+let humanScore = 0
+let computerScore = 0
+
+(getComputerChoice())
+console.log (getHumanChoice())
 
 
 
