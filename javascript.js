@@ -2,25 +2,75 @@ function getComputerChoice() {
     let choice = (Math.floor (Math.random() * 3));
 
     if (choice === 0) {
-        console.log ("Rock");
+        choice = ("Rock");
     } else if (choice === 1) {
-        console.log ("Paper");
+        choice = ("Paper");
     } else {
-        console.log ("Scissors");
+        choice = ("Scissors");
     }
-    
+    return (choice);
 }
 
 function getHumanChoice() {
-    let choice = (prompt("What is your choice?"))
-    return choice
+    let choice = (prompt("What is your choice?"));
+    return (choice);
 }
 
-let humanScore = 0
+function playRound (humanChoice, computerChoice) {
+    let humanChoiceFix = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
+    if (humanChoiceFix === "Rock") {
+        if (computerChoice === "Paper") {
+            console.log ("You lost! You chose Rock and your opponent chose Paper");
+            computerScore = computerScore + 1;
+        } else if (computerChoice === "Scissors") {
+            console.log ("You won! You chose Rock and your opponent chose Scissors");
+            humanScore = humanScore + 1;
+        } else {
+            console.log ("You tied! You and your opponent chose Rock");
+        }
+    } else if (humanChoiceFix === "Paper") {
+        if (computerChoice === "Rock") {
+            console.log ("You won! You chose Paper and your opponent chose Rock");
+            humanScore = humanScore + 1;
+        } else if (computerChoice === "Scissors") {
+            console.log ("You lost! You chose Paper and your opponent chose Scissors");
+            computerScore = computerScore + 1;
+        } else {
+            console.log ("You tied! You and your opponent chose Paper");
+        }
+    } else if (humanChoiceFix === "Scissors") {
+        if (computerChoice === "Paper") {
+            console.log ("You won! You chose Scissors and your opponent chose Paper");
+            humanScore = humanScore + 1;
+        } else if (computerChoice === "Rock") {
+            console.log ("You lost! You chose Scissors and your opponent chose Rock");
+            computerScore = computerScore + 1;
+        } else {
+            console.log ("You tied! You and your opponent chose Scissors");
+        }
+    } else {
+        console.log ("Incorrect entry")
+    }
+    return humanScore, computerScore
+}
+
 let computerScore = 0
+let humanScore = 0
 
-(getComputerChoice())
-console.log (getHumanChoice())
+function playGame () {
+    playRound(getHumanChoice(), getComputerChoice())  
+    playRound(getHumanChoice(), getComputerChoice()) 
+    playRound(getHumanChoice(), getComputerChoice()) 
+    playRound(getHumanChoice(), getComputerChoice()) 
+    playRound(getHumanChoice(), getComputerChoice())   
+    console.log ("Total Score: You - " + humanScore + " CPU - " + computerScore);
+    if (humanScore > computerScore) {
+        console.log ("You won :D");
+    } else if (humanScore < computerScore) {
+        console.log ("You lost D:");
+    } else {
+        console.log ("You tied :O");
+    }
+}
 
-
-
+playGame()
